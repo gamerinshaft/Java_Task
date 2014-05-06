@@ -1,22 +1,27 @@
 import java.applet.Applet;
 import java.awt.*;
+import java.util.*;
 
 public class LineGraph extends Applet {
-  float pa[]=new float[12];
+   float pa[]= new float[9];
+  int count;
   float max = 0;
   public void init() {
-     setBackground(new Color(0,0,0));
-     pa[0]=700;pa[1]=640;pa[2]=340;pa[3]=412;pa[4]=560;pa[5]=109;
-     pa[6]=800;pa[7]=250;
-     //値の比較
-     int i;
-     for(i=0;i<pa.length;i++){
+    StringTokenizer data = new StringTokenizer(getParameter("line"));
+    count = data.countTokens();
+    setBackground(new Color(0,0,0));
+    //値の比較
+    int i;
+    for(i=0;i<count;i++){
+      pa[i] =  Float.parseFloat(data.nextToken());
+    }
+    for(i=0;i<pa.length;i++){
         if(max<=pa[i]){
           max = pa[i];
         }
-     }
+    }
 
-   }
+  }
 
   public void paint(Graphics g) {
     int i,j;
@@ -93,6 +98,10 @@ public class LineGraph extends Applet {
         GradientPaint gp = new GradientPaint((int)(15+40+335*i/7)+5,5+250-20-(int)(205*pa[i]/max),color1,5+(int)(15+40+335*(i+1)/7),5+250-20-(int)(205*pa[i+1]/max),color2);
         g2.setPaint(gp);
         g2.fillOval((int)(15+40+335*i/7),250-20-(int)(205*pa[i]/max),10,10);
+        g.setColor(color1);
+        g.fillOval((int)(15+40+335*i/7),250-20,10,10);
+        g.setColor(new Color(255,255,255));
+        g.fillOval((int)(15+40+335*i/7)+2,250-20-(int)(205*pa[i]/max)+2,6,6);
         g.setColor(color1);
         g.fillOval((int)(15+40+335*i/7),250-20,10,10);
         g.setColor(new Color(255,255,255));

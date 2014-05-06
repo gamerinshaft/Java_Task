@@ -1,22 +1,27 @@
 import java.applet.Applet;
 import java.awt.*;
+import java.util.*;
 
 public class BarGraph extends Applet {
-  float pa[]=new float[8];
+  float pa[]= new float[8];
+  int count;
   float max = 0;
   public void init() {
-     setBackground(new Color(0,0,0));
-     pa[0]=100;pa[1]=640;pa[2]=340;pa[3]=412;pa[4]=560;pa[5]=109;
-     pa[6]=800;pa[7]=250;
-     //値の比較
-     int i;
-     for(i=0;i<pa.length;i++){
+    StringTokenizer data = new StringTokenizer(getParameter("bar"));
+    count = data.countTokens();
+    setBackground(new Color(0,0,0));
+    //値の比較
+    int i;
+    for(i=0;i<count;i++){
+      pa[i] =  Float.parseFloat(data.nextToken());
+    }
+    for(i=0;i<pa.length;i++){
         if(max<=pa[i]){
           max = pa[i];
         }
-     }
+    }
 
-   }
+  }
 
   public void paint(Graphics g) {
     int i,j;

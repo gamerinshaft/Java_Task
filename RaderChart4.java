@@ -1,7 +1,7 @@
 import java.applet.Applet;
 import java.awt.*;
-import java.util.*;
-public class RaderChart extends Applet {
+
+public class RaderChart4 extends Applet {
   float pa[]=new float[12];
   float pa_second[]=new float[12];
   float max = 0;
@@ -9,18 +9,12 @@ public class RaderChart extends Applet {
   float sum_second = 0;
   float percent[] = new float[pa.length];
   float percent_second[] = new float[pa.length];
-  int count;
   public void init() {
-    StringTokenizer data1 = new StringTokenizer(getParameter("rader1"));
-    StringTokenizer data2 = new StringTokenizer(getParameter("rader2"));
-    count = data1.countTokens();
     setBackground(new Color(0,0,0));
-    //値の比較
+    pa[0]=90;pa[1]=100;pa[2]=100;pa[3]=80;pa[4]=160;pa[5]=120;pa[6]=110;pa[7]=100;pa[8]=90;pa[9]=190;pa[10]=170;pa[11]=80;
+    pa_second[0]=30;pa_second[1]=40;pa_second[2]=60;pa_second[3]=50;pa_second[4]=80;pa_second[5]=60;pa_second[6]=70;pa_second[7]=90;pa_second[8]=50;pa_second[9]=140;pa_second[10]=60;pa_second[11]=40;
     int i;
-    for(i=0;i<count;i++){
-      pa[i] =  Float.parseFloat(data1.nextToken());
-      pa_second[i] =  Float.parseFloat(data2.nextToken());
-    }
+    //値の比較
     for(i=0;i<pa.length;i++){
         sum += pa[i];
         sum_second += pa_second[i];
@@ -37,7 +31,6 @@ public class RaderChart extends Applet {
     }
 
   }
-
   public void paint(Graphics g) {
     Graphics2D g2 = (Graphics2D)g;
     //うしろぼやけ
