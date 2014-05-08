@@ -4,15 +4,15 @@ import java.util.*;
 
 public class LineGraph extends Applet {
   float pa[];
-  int count;
   float max = 0;
+  int count;
   public void init() {
+    int i;
     StringTokenizer data = new StringTokenizer(getParameter("line"));
     count = data.countTokens();
     pa= new float[count];
     setBackground(new Color(0,0,0));
     //値の比較
-    int i;
     for(i=0;i<count;i++){
       pa[i] =  Float.parseFloat(data.nextToken());
     }
@@ -83,30 +83,27 @@ public class LineGraph extends Applet {
     }
     //横線数値記入
     //横丸ぽちの追加
-    for(i=0;i<8;i++){
+    for(i=0;i<count;i++){
       g.setColor(new Color(255,255,255));
-      g.drawString(i+"",(int)(15+40+335*i/7)+1,250+7);
+      g.drawString(i+"",(int)(15+40+335*i/(count-1))+1,250+7);
       g.setColor(new Color(25,25,25));
-      g.fillOval((int)(15+40+335*i/7),250-20,10,10);
+      g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
     }
     //折れ線グラフのデータ記入
-    for(i=0;i<8;i++){
+    for(i=0;i<count;i++){
       if(i==0){
         g.setColor(color2);
-        g.fillOval((int)(15+40+335*i/7),250-20,10,10);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
+      }else{
+        g.setColor(color1);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
       }
-      if(i==7){
-        GradientPaint gp = new GradientPaint((int)(15+40+335*i/7)+5,5+250-20-(int)(205*pa[i]/max),color1,5+(int)(15+40+335*(i+1)/7),5+250-20-(int)(205*pa[i+1]/max),color2);
-        g2.setPaint(gp);
-        g2.fillOval((int)(15+40+335*i/7),250-20-(int)(205*pa[i]/max),10,10);
+      if(i==count-1){
+        g2.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),10,10);
         g.setColor(color1);
-        g.fillOval((int)(15+40+335*i/7),250-20,10,10);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
         g.setColor(new Color(255,255,255));
-        g.fillOval((int)(15+40+335*i/7)+2,250-20-(int)(205*pa[i]/max)+2,6,6);
-        g.setColor(color1);
-        g.fillOval((int)(15+40+335*i/7),250-20,10,10);
-        g.setColor(new Color(255,255,255));
-        g.fillOval((int)(15+40+335*i/7)+2,250-20-(int)(205*pa[i]/max)+2,6,6);
+        g.fillOval((int)(15+40+335*i/(count-1))+2,250-20-(int)(205*pa[i]/max)+2,6,6);
         break;
       }else{
         if(250-20-(int)(205*pa[i+1]/max) >= 15+10+51*4){
@@ -119,17 +116,13 @@ public class LineGraph extends Applet {
         }else if(250-20-(int)(205*pa[i+1]/max) >= 15+10+51*0){
           color2 = Color.BLUE;
         }
-        GradientPaint gp = new GradientPaint((int)(15+40+335*i/7)+5,5+250-20-(int)(205*pa[i]/max),color1,5+(int)(15+40+335*(i+1)/7),5+250-20-(int)(205*pa[i+1]/max),color2);
+        GradientPaint gp = new GradientPaint((int)(15+40+335*i/(count-1))+5,5+250-20-(int)(205*pa[i]/max),color1,5+(int)(15+40+335*(i+1)/(count-1)),5+250-20-(int)(205*pa[i+1]/max),color2);
         g2.setPaint(gp);
-        g2.drawLine((int)(15+40+335*i/7)+5,5+250-20-(int)(205*pa[i]/max),5+(int)(15+40+335*(i+1)/7),5+250-20-(int)(205*pa[i+1]/max));
-        if(i!=0){
-        g.setColor(color1);
-        g.fillOval((int)(15+40+335*i/7),250-20,10,10);
-        }
+        g2.drawLine((int)(15+40+335*i/(count-1))+5,5+250-20-(int)(205*pa[i]/max),5+(int)(15+40+335*(i+1)/(count-1)),5+250-20-(int)(205*pa[i+1]/max));
         color1 = color2;
-        g2.fillOval((int)(15+40+335*i/7),250-20-(int)(205*pa[i]/max),10,10);
+        g2.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),10,10);
         g.setColor(new Color(255,255,255));
-        g.fillOval((int)(15+40+335*i/7)+2,250-20-(int)(205*pa[i]/max)+2,6,6);
+        g.fillOval((int)(15+40+335*i/(count-1))+2,250-20-(int)(205*pa[i]/max)+2,6,6);
       }
 
     }
