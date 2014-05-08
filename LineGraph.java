@@ -75,10 +75,10 @@ public class LineGraph extends Applet {
       if(250-20-(int)(205*pa[0]/max) < 15+10+51*i){
         GradientPaint gp = new GradientPaint(15+45,15+10+51*0,color1,15+45,250-15,color2);
         g2.setPaint(gp);
-        g2.fillOval(15+40,15+10+51*i,10,10);
+        g2.fillOval(15+40,15+10+51*i,11,11);
       }else{
         g.setColor(new Color(25,25,25));
-        g.fillOval(15+40,15+10+51*i,10,10);
+        g.fillOval(15+40,15+10+51*i,11,11);
       }
     }
     //横線数値記入
@@ -87,26 +87,26 @@ public class LineGraph extends Applet {
       g.setColor(new Color(255,255,255));
       g.drawString(i+"",(int)(15+40+335*i/(count-1))+1,250+7);
       g.setColor(new Color(25,25,25));
-      g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
+      g.fillOval((int)(15+40+335*i/(count-1)),250-20,11,11);
     }
     //折れ線グラフのデータ記入
     for(i=0;i<count;i++){
       if(i==0){
         g.setColor(color2);
-        g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20,11,11);
       }else{
         g.setColor(color1);
-        g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20,11,11);
       }
       if(i==count-1){
-        g2.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),10,10);
+        g2.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),11,11);
         g.setColor(color1);
-        g.fillOval((int)(15+40+335*i/(count-1)),250-20,10,10);
-        float[] dist = {0.0f, 0.4f};
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20,11,11);
+        float[] dist = {0.0f, 0.5f};
         Color[] colors = {new Color(255,255,255),color1};
-        RadialGradientPaint rgp = new RadialGradientPaint((int)(15+40+335*i/(count-1))+5,250-20-(int)(205*pa[i]/max)+5,10, dist, colors);
+        RadialGradientPaint rgp = new RadialGradientPaint((int)(15+40+335*i/(count-1))+6,250-20-(int)(205*pa[i]/max)+6,10, dist, colors);
         g2.setPaint(rgp);
-        g.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),10,10);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),11,11);
         break;
       }else{
         if(250-20-(int)(205*pa[i+1]/max) >= 15+10+51*4){
@@ -122,12 +122,12 @@ public class LineGraph extends Applet {
         GradientPaint gp = new GradientPaint((int)(15+40+335*i/(count-1))+5,5+250-20-(int)(205*pa[i]/max),color1,5+(int)(15+40+335*(i+1)/(count-1)),5+250-20-(int)(205*pa[i+1]/max),color2);
         g2.setPaint(gp);
         g2.drawLine((int)(15+40+335*i/(count-1))+5,5+250-20-(int)(205*pa[i]/max),5+(int)(15+40+335*(i+1)/(count-1)),5+250-20-(int)(205*pa[i+1]/max));
-        g2.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),10,10);
-        float[] dist = {0.0f, 0.4f};
+        g2.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),11,11);
+        float[] dist = {0.0f, 0.5f};
         Color[] colors = {new Color(255,255,255),color1};
-        RadialGradientPaint rgp = new RadialGradientPaint((int)(15+40+335*i/(count-1))+5,250-20-(int)(205*pa[i]/max)+5,10, dist, colors);
+        RadialGradientPaint rgp = new RadialGradientPaint((int)(15+40+335*i/(count-1))+6,250-20-(int)(205*pa[i]/max)+6,10, dist, colors);
         g2.setPaint(rgp);
-        g.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),10,10);
+        g.fillOval((int)(15+40+335*i/(count-1)),250-20-(int)(205*pa[i]/max),11,11);
         color1 = color2;
       }
 
