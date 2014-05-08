@@ -3,12 +3,13 @@ import java.awt.*;
 import java.util.*;
 
 public class BarGraph extends Applet {
-  float pa[]= new float[8];
+  float pa[];
   int count;
   float max = 0;
   public void init() {
     StringTokenizer data = new StringTokenizer(getParameter("bar"));
     count = data.countTokens();
+    pa= new float[count];
     setBackground(new Color(0,0,0));
     //値の比較
     int i;
