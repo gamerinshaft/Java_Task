@@ -2,18 +2,25 @@ import java.applet.Applet;
 import java.awt.*;
 import java.util.*;
 public class RaderChart extends Applet {
-  float pa[]=new float[12];
-  float pa_second[]=new float[12];
+  float pa[];
+  float pa_second[];
   float max = 0;
+  int maxGage;
   float sum = 0;
   float sum_second = 0;
-  float percent[] = new float[pa.length];
-  float percent_second[] = new float[pa.length];
+  float percent[];
+  float percent_second[];
   int count;
   public void init() {
     StringTokenizer data1 = new StringTokenizer(getParameter("rader1"));
     StringTokenizer data2 = new StringTokenizer(getParameter("rader2"));
     count = data1.countTokens();
+    pa =new float[count];
+    pa_second =new float[count];
+
+    percent = new float[pa.length];
+    percent_second = new float[pa.length];
+
     setBackground(new Color(0,0,0));
     //値の比較
     int i;
@@ -31,9 +38,10 @@ public class RaderChart extends Applet {
           max = pa_second[i];
         }
     }
+    maxGage = (int)(Math.ceil(max/100.0)*100);
     for(i=0;i<pa.length;i++){
-      percent[i] = pa[i]*100/max;
-      percent_second[i] = pa_second[i]*100/max;
+      percent[i] = pa[i]*100/maxGage;
+      percent_second[i] = pa_second[i]*100/maxGage;
     }
 
   }
