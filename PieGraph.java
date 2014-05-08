@@ -3,13 +3,14 @@ import java.awt.*;
 import java.util.*;
 
 public class PieGraph extends Applet {
-  float pa[]= new float[8];
+  float pa[];
   int count;
   float max = 0;
   float sum = 0;
   public void init() {
     StringTokenizer data = new StringTokenizer(getParameter("pie"));
     count = data.countTokens();
+    pa= new float[count];
     setBackground(new Color(0,0,0));
     //値の比較
     int i;
