@@ -26,6 +26,8 @@ public class PieGraph extends Applet {
 
   }
   public void paint(Graphics g) {
+    int k;
+    g.fillOval(35,-40,340,340);
     // 外の枠
     g.setColor(new Color(255,255,255));
     g.drawRect(15,15,400,250);
@@ -39,7 +41,7 @@ public class PieGraph extends Applet {
     g.setColor(new Color(35,35,35));
     g.fillOval(15+80, 15+5, 240, 240);
 
-    //一番外枠パーセンテージの表示
+    //一番外枠の表示
     g.setColor(new Color(255,0,0));
     g.fillArc(15+80,15+5,240,240,90,360);
     g.setColor(new Color(255,128,0));
@@ -59,35 +61,38 @@ public class PieGraph extends Applet {
 
     g.setColor(new Color(35,35,35));
     g.fillOval(15+80+10,15+5+10,220,220);
-    g.setColor(new Color(190,0,0));
-    g.fillArc(15+80+10,15+5+10,220,220,90,Math.round(360*pa[7]/max));
-    g.drawString(7+"",15+15+325,45+20+15*7);
-    g.drawString((int)(100*pa[7]/max)+"%",15+35+325,45+20+15*7);
+
+    // g.setColor(new Color(190,0,0));
+    // g.fillArc(15+80+10,15+5+10,220,220,90,Math.round(360*pa[7]/max));
+
+    // g.drawString(7+"",15+15+325,45+20+15*7);
+    // g.drawString((int)(100*pa[7]/max)+"%",15+35+325,45+20+15*7);
 
     g.setColor(new Color(25,25,25));
     g.fillOval(15+100, 15+25, 200, 200);
-    int k;
-    for(k=6;k>=4;k--){
-      g.setColor(new Color(25,25,25));
-      g.fillOval(15+100+(42-7*k),15+25+(42-7*k), 200-(84-14*k), 200-(84-14*k));
-      g.setColor(new Color(255,250-50*(2-(6-k)),0));
-      g.fillArc(15+100+(42-7*k),15+25+(42-7*k), 200-(84-14*k), 200-(84-14*k), 90,Math.round(360*pa[k]/max));
-      g.drawString(k+"",15+15+325,45+20+15*k);
-      g.drawString((int)(100*pa[k]/max)+"%",15+35+325,45+20+15*k);
-    }
+
+    // for(k=6;k>=4;k--){
+    //   g.setColor(new Color(25,25,25));
+    //   g.fillOval(15+100+(42-7*k),15+25+(42-7*k), 200-(84-14*k), 200-(84-14*k));
+    //   g.setColor(new Color(255,250-50*(2-(6-k)),0));
+    //   g.fillArc(15+100+(42-7*k),15+25+(42-7*k), 200-(84-14*k), 200-(84-14*k), 90,Math.round(360*pa[k]/max));
+    //   g.drawString(k+"",15+15+325,45+20+15*k);
+    //   g.drawString((int)(100*pa[k]/max)+"%",15+35+325,45+20+15*k);
+    // }
     g.setColor(new Color(35,35,35));
     g.fillOval(15+120, 15+45, 160, 160);
     int i;
-    for(i=3;i>=0;i--){
-      g.setColor(new Color(35,35,35));
-      g.fillOval(15+120+(15-5*i),15+45+(15-5*i), 160-(30-10*i), 160-(30-10*i));
-      g.setColor(new Color(0,250-50*(3-i),100+50*(3-i)));
-      g.fillArc(15+120+(15-5*i),15+45+(15-5*i), 160-(30-10*i), 160-(30-10*i), 90,Math.round(360*pa[i]/max));
-      g.drawString(i+"",15+15+325,45+20+15*i);
-      g.drawString((int)(100*pa[i]/max)+"%",15+35+325,45+20+15*i);
-    }
+    // for(i=3;i>=0;i--){
+    //   g.setColor(new Color(35,35,35));
+    //   g.fillOval(15+120+(15-5*i),15+45+(15-5*i), 160-(30-10*i), 160-(30-10*i));
+    //   g.setColor(new Color(0,250-50*(3-i),100+50*(3-i)));
+    //   g.fillArc(15+120+(15-5*i),15+45+(15-5*i), 160-(30-10*i), 160-(30-10*i), 90,Math.round(360*pa[i]/max));
+    //   g.drawString(i+"",15+15+325,45+20+15*i);
+    //   g.drawString((int)(100*pa[i]/max)+"%",15+35+325,45+20+15*i);
+    // }
     g.setColor(new Color(25,25,25));
     g.fillOval(15+140, 15+65, 120, 120);
+
     //メーター
     int j;
     int arc1 = 90;
@@ -99,6 +104,7 @@ public class PieGraph extends Applet {
     g.drawString("最大値に",15+12+325,30);
     g.drawString("対する比率",15+5+325,30+15);
 
+    //内側のメーター
     for(j=0;j<8;j++){
       length = Math.round(360*pa[j]/sum);
       if(j<=1){
@@ -115,10 +121,13 @@ public class PieGraph extends Applet {
       g.fillArc(15+140, 15+65, 120, 120, arc1, length);
       arc1 += length;
     }
+
+    //一番内側のコード
     g.setColor(new Color(35,35,35));
     g.fillOval(15+160, 15+85, 80, 80);
     g.setColor(new Color(25,25,25));
     g.fillOval(15+180, 15+105, 40, 40);
+
     //円縦線
     g.setColor(Color.WHITE);
     g.fillRect(15+200-1,15+5,3,120);
